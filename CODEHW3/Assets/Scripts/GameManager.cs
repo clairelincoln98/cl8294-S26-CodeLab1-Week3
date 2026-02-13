@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
         //If you want to delete all the keys in a playerPref, use this
         //PlayerPrefs.DeleteAll();
 
-
+        string updatedGreetingText = defaultGreetingText;
         // Establish singleton: keep the first instance and destroy duplicates
         if (instance == null)
         {
@@ -119,54 +119,46 @@ public class GameManager : MonoBehaviour
         }
         GameManager.instance.GreetingNumber++;
 
-        if (GreetingNumber <= 1) //this is the player's first time playing
-
-        {
-            string updatedGreetingText = defaultGreetingText;
-            // Replace placeholders with current values
-            updatedGreetingText = "Hi there. This isn't much of a game. Try restarting."; //always use the property to make sure the value is properly loaded
-                                                                                          //  updatedGreetingText = updatedGreetingText.Replace("<high>", HighScore + "");
-            if (greetingText != null)
-            {
-                greetingText.text = updatedGreetingText;
-            }
-
-        }
-
-        if (GreetingNumber == 3) //if the player has returned three times
-
-        {
-            if (greetingText != null)
-            {
-                greetingText.text = "Oh you believed me. Try again?";
-            }
-
-        }
-
-        if (GreetingNumber == 4)
+        if (greetingNumber <= 1) //this is the player's first time playing
 
         {
             
-            if (greetingText != null)
-            {
-                greetingText.text = "Still here? Three times a charm I guess.";
-            }
+            // Replace placeholders with current values
+            updatedGreetingText = "Hi there. This isn't much of a game. Try restarting."; //always use the property to make sure the value is properly loaded
+                                                                                          //  updatedGreetingText = updatedGreetingText.Replace("<high>", HighScore + "");
+            
+        }
+
+        if (greetingNumber == 3) //if the player has returned three times
+
+        {
+           
+                updatedGreetingText = "Oh you believed me. Try again?";
 
         }
 
-        if (GreetingNumber > 10)
+        if (greetingNumber == 4)
 
         {
-            string updatedGreetingText = defaultGreetingText;
-            // Replace placeholders with current values
-            updatedGreetingText = updatedGreetingText.Replace("<greetingNumber>", GreetingNumber + ""); //always use the property to make sure the value is properly loaded
-                                                                                                  //  updatedGreetingText = updatedGreetingText.Replace("<high>", HighScore + "");
-            if (greetingText != null)
-            {
-                greetingText.text = updatedGreetingText;
-            }
-            // Update the UI text if assigned (avoid null reference)
+            
+    
+                updatedGreetingText = "Still here? Three times a charm I guess.";
 
+        }
+
+        if (greetingNumber > 10)
+
+        {
+            
+            // Replace placeholders with current values
+            updatedGreetingText = updatedGreetingText.Replace("<greetingNumber>", greetingNumber + ""); //always use the property to make sure the value is properly loaded
+                                                                                                  //  updatedGreetingText = updatedGreetingText.Replace("<high>", HighScore + "");
+
+        }
+
+        if (greetingText != null)
+        {
+            greetingText.text = updatedGreetingText;
         }
     }
 
