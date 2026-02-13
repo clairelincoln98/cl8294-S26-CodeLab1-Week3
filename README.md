@@ -1,5 +1,5 @@
-# FILL IN INFO ABOUT YOUR GAME HERE. 
+# IM SORRY I RAN INTO A LOT OF ISSUES. 
 
-DO NOT LEAVE IT LIKE THIS!!!
+I wanted to do more with this, a game that progresses each time you restart with some cute meta dialogue 
 
-Please? Please, give me content. I'm begging you. It's not that hard. Thanks.
+But I ended up just trying to get it to work.
