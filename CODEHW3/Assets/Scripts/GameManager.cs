@@ -24,43 +24,8 @@ public class GameManager : MonoBehaviour
     // public int Haw { set; get; }
 
     // Current player score (can be modified by other scripts)
-    private int greeting;
-
-    public int Greeting //C# Property that is a wrapper around "score",
-                     //must be a capitalized version of that  
-    {
-        set //gets called whenever Score is set
-        {
-            Debug.Log("Set Greeting: " + value);
             
-            greeting = value; //sets the var "score" to the value of Score
-            
-            //Replaced PlayerPrefs with File IO
-            PlayerPrefs.SetInt(KeyGreeting, greeting); //Saving the score to player prefs so it can be retrieved later (even after closing the game)
-            
-            // Debug.Log("Where we save: " + fullFilePath);
-            
-            //play a sound?
-            //add juice?
-            //spawn enemy?
-            //you can do whatever you want in this function
-            //and it will happen whenever you set the value
-            //of the Score property
-            
-          /*  if (greeting > GreetingNumber) //int var score > the property HighScore
-            {
-                GreetingNumber = greeting;
-            }*/
-        }
-        get
-        {
-            greeting = PlayerPrefs.GetInt(KeyGreeting, 0); //Retrieving the score from player prefs
-            
-            Debug.Log("Got Greeting: " + greeting);
-            return greeting;  //return the value of the "score" var
-        }
-    }
-
+          
 
     private int greetingNumber;
 
@@ -69,7 +34,8 @@ public class GameManager : MonoBehaviour
         get
         {
             //highScore = PlayerPrefs.GetInt(KeyForTheHighScorePlayerPref, 5);
-            
+            PlayerPrefs.SetInt(KeyGreeting, greetingNumber);
+            greetingNumber = PlayerPrefs.GetInt(KeyGreeting, 0);
             //getting the path to the highScore.txt file
             string fullFilePath = Application.dataPath + GREETING_NUMBER;
 
@@ -77,7 +43,7 @@ public class GameManager : MonoBehaviour
             //if there is no file
             if (!File.Exists(fullFilePath))
             {
-                greetingNumber = 0; //default high score is 1
+                greetingNumber = 0; //default greeting is 1
             }
             else //otherwise
             {
@@ -137,7 +103,7 @@ public class GameManager : MonoBehaviour
     {
         //If you want to delete all the keys in a playerPref, use this
         //PlayerPrefs.DeleteAll();
-       
+
 
         // Establish singleton: keep the first instance and destroy duplicates
         if (instance == null)
@@ -151,7 +117,7 @@ public class GameManager : MonoBehaviour
             // Destroy duplicate GameManager instances to enforce single instance
             Destroy(gameObject);
         }
-        GameManager.instance.Greeting++;
+        GameManager.instance.GreetingNumber++;
 
         if (greetingNumber <= 1)
 
@@ -167,7 +133,7 @@ public class GameManager : MonoBehaviour
 
         }
 
-        if (greetingNumber < 3)
+        if (greetingNumber == 3)
 
         {
             if (greetingText != null)
@@ -177,7 +143,7 @@ public class GameManager : MonoBehaviour
 
         }
 
-        if (greetingNumber < 4)
+        if (greetingNumber == 4)
 
         {
             
@@ -188,12 +154,12 @@ public class GameManager : MonoBehaviour
 
         }
 
-        if (Greeting > 10)
+        if (greetingNumber > 10)
 
         {
             string updatedGreetingText = defaultGreetingText;
             // Replace placeholders with current values
-            updatedGreetingText = updatedGreetingText.Replace("<greetingNumber>", Greeting + ""); //always use the property to make sure the value is properly loaded
+            updatedGreetingText = updatedGreetingText.Replace("<greetingNumber>", GreetingNumber + ""); //always use the property to make sure the value is properly loaded
                                                                                                   //  updatedGreetingText = updatedGreetingText.Replace("<high>", HighScore + "");
             if (greetingText != null)
             {
