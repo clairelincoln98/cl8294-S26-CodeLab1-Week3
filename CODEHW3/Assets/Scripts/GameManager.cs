@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
         }
         GameManager.instance.GreetingNumber++;
 
-        if (greetingNumber <= 1)
+        if (GreetingNumber <= 1) //this is the player's first time playing
 
         {
             string updatedGreetingText = defaultGreetingText;
@@ -133,7 +133,7 @@ public class GameManager : MonoBehaviour
 
         }
 
-        if (greetingNumber == 3)
+        if (GreetingNumber == 3) //if the player has returned three times
 
         {
             if (greetingText != null)
@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour
 
         }
 
-        if (greetingNumber == 4)
+        if (GreetingNumber == 4)
 
         {
             
@@ -154,7 +154,7 @@ public class GameManager : MonoBehaviour
 
         }
 
-        if (greetingNumber > 10)
+        if (GreetingNumber > 10)
 
         {
             string updatedGreetingText = defaultGreetingText;
